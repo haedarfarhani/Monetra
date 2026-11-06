@@ -1,0 +1,52 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Container Shadow / Dark Coffee Foundation Frame (#43291F) -->
+    <path
+        android:fillColor="#43291F"
+        android:pathData="M39,39h24c5,0 9,4 9,9v16c0,5 -4,9 -9,9h-24c-5,0 -9,-4 -9,-9v-16c0,-5 4,-9 9,-9z" />
+
+    <!-- Container Vault / Wallet Body (Willow Green #87C38F) -->
+    <path
+        android:fillColor="#87C38F"
+        android:pathData="M39,37h24c4.42,0 8,3.58 8,8v16c0,4.42 -3.58,8 -8,8h-24c-4.42,0 -8,-3.58 -8,-8v-16c0,-4.42 3.58,-8 8,-8z" />
+
+    <!-- Inner Vault Interior Flap / Pocket (Turf Green #226F54) -->
+    <path
+        android:fillColor="#226F54"
+        android:pathData="M31,52c6,4 14,8 20,8s14,-4 20,-8v10c0,3.87 -3.13,7 -7,7h-26c-3.87,0 -7,-3.13 -7,-7z" />
+
+    <!-- Ascending Growth Arrow Vector (Lemon Chiffon #F4F0BB) -->
+    <path
+        android:fillColor="#F4F0BB"
+        android:pathData="M73,35L57,35L62,40L38,64L44,70L68,46L73,51Z" />
+
+    <!-- Scarlet Rush Micro-Accent Indicator (#DA2C38) -->
+    <path
+        android:fillColor="#DA2C38"
+        android:pathData="M68,38m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+
+    <!-- Coin Medallion: Outer Rim (Dark Coffee #43291F) -->
+    <path
+        android:fillColor="#43291F"
+        android:pathData="M51,54m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0" />
+
+    <!-- Coin Medallion: Face (Lemon Chiffon #F4F0BB) -->
+    <path
+        android:fillColor="#F4F0BB"
+        android:pathData="M51,54m-10,0a10,10 0,1 1,20 0a10,10 0,1 1,-20 0" />
+
+    <!-- Coin Medallion: Inner Groove Ring (Willow Green #87C38F) -->
+    <path
+        android:fillColor="#87C38F"
+        android:pathData="M51,54m-7,0a7,7 0,1 1,14 0a7,7 0,1 1,-14 0" />
+
+    <!-- Coin Medallion: Core Ingot Disc (Turf Green #226F54) -->
+    <path
+        android:fillColor="#226F54"
+        android:pathData="M51,54m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0" />
+
+</vector>

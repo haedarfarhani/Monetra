@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">مونترا</string>
+    <string name="nav_dashboard">داشبورد</string>
+    <string name="nav_transactions">تراکنش‌ها</string>
+    <string name="nav_accounts">حساب‌ها</string>
+    <string name="nav_categories">دسته‌بندی‌ها</string>
+    <string name="nav_settings">تنظیمات</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">داشبورد</string>
+    <string name="total_balance">موجودی کل</string>
+    <string name="monthly_income">درآمد ماهانه</string>
+    <string name="monthly_expense">هزینه ماهانه</string>
+    <string name="recent_transactions">تراکنش‌های اخیر</string>
+    <string name="no_recent_transactions">هیچ تراکنش اخیری یافت نشد.</string>
+    <string name="add_transaction">افزودن تراکنش</string>
+
+    <!-- Transactions -->
+    <string name="transactions_title">تراکنش‌ها</string>
+    <string name="no_transactions">هنوز هیچ تراکنشی ثبت نشده است.</string>
+
+    <!-- Accounts -->
+    <string name="accounts_title">حساب‌ها</string>
+    <string name="no_accounts">هنوز هیچ حسابی اضافه نشده است.</string>
+
+    <!-- Categories -->
+    <string name="categories_title">دسته‌بندی‌ها</string>
+    <string name="category_edit_title">ویرایش دسته‌بندی</string>
+    <string name="category_delete_title">حذف دسته‌بندی</string>
+    <string name="category_delete_message">تراکنش‌های این دسته حفظ می‌شوند و بدون دسته‌بندی می‌مانند.</string>
+    <string name="category_system_badge">سیستمی</string>
+    <string name="no_categories">هنوز دسته‌بندی اضافه نشده است.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">تنظیمات</string>
+    <string name="biometric_auth">احراز هویت بیومتریک</string>
+    <string name="settings_biometric_subtitle">ورود سریع و امن با اثر انگشت</string>
+    <string name="settings_biometric_unavailable">بیومتریک روی این دستگاه در دسترس نیست</string>
+    <string name="settings_biometric_enabled">قفل بیومتریک فعال شد</string>
+    <string name="settings_lock_message">برای ادامه، احراز هویت کنید</string>
+    <string name="settings_drafts_cleared">پیش‌نویس‌های در انتظار پاک شدند</string>
+    <string name="currency">واحد پول</string>
+    <string name="language">زبان</string>
+    <string name="language_system_default">پیش‌فرض سیستم</string>
+    <string name="language_persian">فارسی</string>
+    <string name="language_english">English</string>
+    <string name="dark_mode">حالت تاریک</string>
+    <string name="theme_mode">حالت نمایش</string>
+    <string name="theme_system">پیش‌فرض سیستم</string>
+    <string name="theme_light">روشن</string>
+    <string name="theme_dark">تاریک</string>
+
+    <!-- Language Selection / Onboarding -->
+    <string name="select_language_title">انتخاب زبان / Select Language</string>
+    <string name="select_language_subtitle">لطفاً زبان مورد نظر خود را انتخاب کنید</string>
+    <string name="continue_button">ادامه</string>
+    <string name="onboarding_step">مرحلهٔ %1$d از %2$d</string>
+    <string name="calendar_title">تقویم</string>
+    <string name="calendar_subtitle">تاریخ‌ها با این تقویم نمایش داده می‌شوند. اطلاعات ذخیره‌شده تغییری نمی‌کند.</string>
+    <string name="calendar_jalali">جلالی (شمسی)</string>
+    <string name="calendar_gregorian">میلادی</string>
+    <string name="currency_title">واحد پول پیش‌فرض</string>
+    <string name="currency_subtitle">برای حساب‌ها و تراکنش‌های جدید استفاده می‌شود. مبالغ قبلی هرگز تبدیل نمی‌شوند.</string>
+    <string name="currency_usd">دلار آمریکا</string>
+    <string name="currency_irr">ریال ایران</string>
+    <string name="currency_toman">تومان ایران</string>
+    <string name="action_next">بعدی</string>
+    <string name="action_back">قبلی</string>
+    <string name="action_finish">پایان</string>
+
+    <string name="action_save">ذخیره</string>
+    <string name="action_cancel">انصراف</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_edit">ویرایش</string>
+    <string name="action_clear">پاک‌سازی</string>
+    <string name="confirm_delete_title">تراکنش حذف شود؟</string>
+    <string name="confirm_delete_message">این کار قابل بازگشت نیست.</string>
+    <string name="transaction_type_income">درآمد</string>
+    <string name="transaction_type_expense">هزینه</string>
+    <string name="transaction_type_transfer">انتقال</string>
+    <string name="transactions_search_hint">جستجو</string>
+    <string name="transactions_filters">فیلترها</string>
+    <string name="filter_all">همه</string>
+    <string name="filter_account">حساب</string>
+    <string name="filter_category">دسته‌بندی</string>
+    <string name="transactions_source_manual">دستی</string>
+    <string name="transactions_source_bank">پیامک بانکی</string>
+    <string name="transaction_delete_message">این تراکنش حذف می‌شود و اثر آن روی موجودی برگردانده می‌شود.</string>
+    <string name="transactions_load_more">در حال بارگذاری…</string>
+    <string name="transactions_no_results">هیچ تراکنشی با فیلترهای شما پیدا نشد.</string>
+    <string name="transaction_form_add_title">تراکنش جدید</string>
+    <string name="transaction_form_edit_title">ویرایش تراکنش</string>
+    <string name="field_amount">مبلغ</string>
+    <string name="field_account">حساب</string>
+    <string name="field_from_account">حساب مبدأ</string>
+    <string name="field_to_account">حساب مقصد</string>
+    <string name="field_category">دسته‌بندی</string>
+    <string name="field_date">تاریخ</string>
+    <string name="field_time">زمان</string>
+    <string name="field_description">توضیحات</string>
+    <string name="field_notes">توضیحات</string>
+    <string name="field_reference">شماره پیگیری</string>
+    <string name="error_amount_required">مبلغی بزرگ‌تر از صفر وارد کنید</string>
+    <string name="error_account_required">یک حساب انتخاب کنید</string>
+    <string name="error_accounts_must_differ">حساب مبدأ و مقصد باید متفاوت باشند</string>
+    <string name="error_category_required">یک دسته‌بندی انتخاب کنید</string>
+    <string name="error_no_accounts">قبل از ثبت تراکنش یک حساب بسازید</string>
+    <string name="action_new_category">دسته‌بندی جدید</string>
+    <string name="action_all_categories">همه دسته‌ها</string>
+    <string name="dialog_new_category_title">دسته‌بندی جدید</string>
+    <string name="field_category_name">نام دسته‌بندی</string>
+    <string name="transaction_detail_title">تراکنش</string>
+    <string name="detail_type">نوع</string>
+    <string name="detail_amount">مبلغ</string>
+    <string name="detail_account">حساب</string>
+    <string name="detail_to_account">حساب مقصد</string>
+    <string name="detail_category">دسته‌بندی</string>
+    <string name="detail_date">تاریخ و زمان</string>
+    <string name="detail_description">شرح</string>
+    <string name="detail_notes">توضیحات</string>
+    <string name="detail_reference">شماره پیگیری</string>
+    <string name="detail_source">منبع</string>
+    <string name="detail_bank">بانک</string>
+    <string name="account_add_title">حساب جدید</string>
+    <string name="account_name">نام حساب</string>
+    <string name="account_initial_balance">موجودی اولیه</string>
+    <string name="account_type_bank">بانکی</string>
+    <string name="account_type_cash">نقدی</string>
+    <string name="account_type_card">کارت</string>
+    <string name="account_type_label">نوع حساب</string>
+    <string name="account_edit_title">ویرایش حساب</string>
+    <string name="account_role_label">نقش حساب</string>
+    <string name="account_role_none">عادی</string>
+    <string name="account_role_default">پیش‌فرض</string>
+    <string name="account_role_daily">خرج روزانه</string>
+    <string name="account_role_salary">دریافت حقوق</string>
+    <string name="account_delete_title">حذف حساب</string>
+    <string name="account_delete_message">با حذف حساب، همه‌ی تراکنش‌های آن هم حذف می‌شود. این کار قابل بازگشت نیست.</string>
+    <string name="account_current_balance">موجودی فعلی</string>
+    <string name="accounts_swipe_hint">برای ویرایش یا حذف، کارت را به چپ یا راست بکشید</string>
+    <string name="accounts_total_balance">موجودی کل</string>
+    <string name="account_field_bank_name">نام بانک (اختیاری)</string>
+    <string name="account_field_account_number">شماره حساب (اختیاری)</string>
+    <string name="account_field_card_number">شماره کارت (اختیاری)</string>
+    <string name="account_field_holder_name">نام صاحب حساب (اختیاری)</string>
+    <string name="account_initial_balance_optional">موجودی اولیه (اختیاری)</string>
+    <string name="account_details_header">اطلاعات حساب</string>
+
+    <!-- توضیحات سریع تراکنش -->
+    <string name="transaction_quick_description">توضیح سریع</string>
+    <string name="transaction_quick_show">نمایش توضیحات سریع</string>
+    <string name="transaction_quick_close">بستن توضیحات سریع</string>
+    <string-array name="transaction_quick_descriptions">
+        <item>خرید مواد غذایی</item>
+        <item>حقوق</item>
+        <item>بنزین</item>
+        <item>اجاره</item>
+        <item>داروخانه</item>
+        <item>هدیه</item>
+    </string-array>
+    <string name="sms_import_title">ورود پیامک بانکی</string>
+    <string name="sms_import_paste_label">متن پیامک بانک</string>
+    <string name="sms_import_parse">تحلیل</string>
+    <string name="sms_import_save">ذخیرهٔ تراکنش</string>
+    <string name="sms_import_reject">رد کردن</string>
+    <string name="sms_import_privacy">پیام‌ها فقط روی همین دستگاه تحلیل می‌شوند و هرگزر ارسال نمی‌شوند.</string>
+    <string name="sms_import_not_financial">این پیام شبیه یک تراکنش بانکی نیست.</string>
+    <string name="sms_import_duplicate">این پیام قبلاً وارد شده است.</string>
+    <string name="sms_import_uncertain">مقادیر شناسایی‌شده را قبل از ذخیره بررسی کنید.</string>
+    <string name="sms_import_saved">تراکنش ذخیره شد</string>
+    <string name="sms_import_bank">بانک</string>
+    <string name="sms_import_card">کارت</string>
+    <string name="sms_import_balance">موجودی</string>
+    <string name="sms_import_confidence">میزان اطمینان</string>
+    <string name="sms_import_pending">در انتظار بررسی</string>
+    <string name="settings_bank_import">پیامک‌های بانکی</string>
+    <string name="settings_auto_save">ذخیرهٔ خودکار ورودی‌های مطمئن</string>
+    <string name="settings_clear_drafts">پاک کردن پیش‌نویس‌های در انتظار</string>
+    <string name="settings_privacy">حریم خصوصی</string>
+    <string name="settings_privacy_body">پیام‌های بانکی فقط روی دستگاه شما خوانده و تحلیل می‌شوند. متن خام پس از تأیید یا رد شما حذف می‌شود و پیام‌های رمز یکبار مصرف نادیده گرفته می‌شوند.</string>
+    <string name="settings_about">درباره</string>
+    <string name="settings_version">نسخهٔ %1$s</string>
+
+    <!-- Common -->
+    <string name="retry">تلاش مجدد</string>
+    <string name="error_generic">خطایی رخ داد. لطفاً دوباره تلاش کنید.</string>
+    <string name="loading">در حال بارگذاری…</string>
+
+    <!-- New Strings for Premium UI -->
+    <string name="nav_reports">گزارش‌ها</string>
+    <string name="onboarding_welcome_title">به مونترا خوش آمدید</string>
+    <string name="onboarding_welcome_tagline">مدیریت هوشمند مالی. زندگی بهتر.</string>
+    <string name="onboarding_welcome_desc">برنامه مدیریت هوشمند مالی با رابط کاربری مدرن، زیبا و امن.</string>
+    <string name="onboarding_theme_title">حالت نمایش</string>
+    <string name="onboarding_theme_subtitle">حالت نمایش مورد علاقه خود را انتخاب کنید</string>
+    <string name="action_view_all">مشاهده همه</string>
+    <string name="greeting_morning">صبح بخیر</string>
+    <string name="greeting_afternoon">عصر بخیر</string>
+    <string name="greeting_evening">شب بخیر</string>
+    <string name="quick_add_income">درآمد</string>
+    <string name="quick_add_expense">هزینه</string>
+    <string name="quick_transfer">انتقال</string>
+    <string name="analytics_title">گزارش‌ها و تحلیل</string>
+    <string name="analytics_income_vs_expense">درآمد در برابر هزینه</string>
+    <string name="analytics_monthly">نمای ماهانه</string>
+    <string name="analytics_by_category">هزینه بر اساس دسته‌بندی</string>
+    <string name="analytics_net_savings">پس‌انداز خالص</string>
+    <string name="analytics_range_month">این ماه</string>
+    <string name="analytics_range_3months">۳ ماه اخیر</string>
+    <string name="analytics_range_year">امسال</string>
+    <string name="analytics_range_all">همه</string>
+    <string name="analytics_tab_daily">روزانه</string>
+    <string name="analytics_tab_monthly">ماهانه</string>
+    <string name="analytics_tab_yearly">سالانه</string>
+    <string name="analytics_period_summary">خلاصه دوره</string>
+    <string name="analytics_vs_previous">نسبت به دوره قبل</string>
+    <string name="analytics_trend_title">روند درآمد و هزینه</string>
+    <string name="analytics_income">درآمد</string>
+    <string name="analytics_expense">هزینه</string>
+    <string name="analytics_average_line">میانگین</string>
+    <string name="analytics_averages_title">میانگین‌ها و آمار</string>
+    <string name="analytics_avg_daily_expense">میانگین هزینه روزانه</string>
+    <string name="analytics_avg_monthly_income">میانگین درآمد ماهانه</string>
+    <string name="analytics_avg_monthly_expense">میانگین هزینه ماهانه</string>
+    <string name="analytics_savings_rate">نرخ پس‌انداز</string>
+    <string name="analytics_transactions_count">تعداد تراکنش‌ها</string>
+    <string name="analytics_insights_title">بینش‌ها</string>
+    <string name="analytics_biggest_expense">بزرگ‌ترین هزینه</string>
+    <string name="analytics_top_category">پرخرج‌ترین دسته</string>
+    <string name="analytics_highest_spend_day">پرخرج‌ترین روز</string>
+    <string name="analytics_projection">پیش‌بینی هزینه این ماه</string>
+    <string name="analytics_projection_hint">بر اساس میانگین روزانه شما</string>
+    <string name="analytics_no_data_title">هنوز گزارشی نیست</string>
+    <string name="analytics_no_data_message">برای باز شدن نمودارها، میانگین‌ها و بینش‌ها اولین تراکنش را ثبت کنید.</string>
+    <string name="analytics_empty_period">در این دوره تراکنشی ثبت نشده</string>
+    <string name="financial_overview">نمای کلی مالی</string>
+    <string name="dashboard_last_months">۴ ماه اخیر</string>
+    <string name="dashboard_open_report">مشاهده گزارش</string>
+    <string name="dashboard_add_first">اولین تراکنش خود را ثبت کنید</string>
+    <string name="dashboard_my_accounts">حساب‌های من</string>
+    <string name="dashboard_savings_rate">نرخ پس‌انداز</string>
+    <string name="dashboard_daily_average">میانگین روزانه</string>
+    <string name="dashboard_top_categories">بیشترین هزینه‌ها</string>
+    <string name="dashboard_this_month">این ماه</string>
+    <string name="dashboard_month_progress">روز %1$d از %2$d</string>
+    <string name="date_picker_title">انتخاب تاریخ</string>
+    <string name="time_picker_title">انتخاب زمان</string>
+    <string name="date_today">امروز</string>
+    <string name="time_now">اکنون</string>
+    <string name="action_confirm">تأیید</string>
+    <string name="hour_label">ساعت</string>
+    <string name="minute_label">دقیقه</string>
+
+    <!-- اعلان و بررسی تراکنش بانکی -->
+    <string name="notif_bank_title">تراکنش بانکی</string>
+    <string name="notif_bank_title_with_bank">بانک %1$s</string>
+    <string name="notif_bank_confirm">تأیید</string>
+    <string name="notif_bank_reject">رد کردن</string>
+    <string name="notif_bank_review">بررسی</string>
+    <string name="review_screen_title">بررسی تراکنش بانکی</string>
+    <string name="review_confirmed_title">تراکنش با موفقیت ثبت شد</string>
+    <string name="review_confirmed_desc">تراکنش ذخیره گردید و موجودی حساب به‌روزرسانی شد.</string>
+    <string name="review_rejected_title">تراکنش رد شد</string>
+    <string name="review_rejected_desc">تراکنش نادیده گرفته شد.</string>
+    <string name="review_expired_title">تراکنش منقضی شده است</string>
+    <string name="review_expired_desc">مهلت بررسی این تراکنش به پایان رسیده است.</string>
+    <string name="settings_bank_notifications">اعلان‌های بانکی</string>
+    <string name="settings_bank_notif_enable">فعال‌سازی اعلان تراکنش</string>
+    <string name="settings_bank_notif_sound">صدا و لرزش</string>
+    <string name="settings_bank_notif_show_amount">نمایش مبلغ تراکنش در اعلان</string>
+    <string name="settings_bank_notif_hide_lockscreen">مخفی‌سازی جزئیات در صفحه قفل</string>
+    <string name="settings_bank_notif_auto_suggest_category">پیشنهاد هوشمند دسته‌بندی</string>
+    <string name="settings_bank_notif_auto_suggest_account">پیشنهاد هوشمند حساب</string>
+    <string name="settings_section_general">تنظیمات عمومی و شخصی‌سازی</string>
+    <string name="settings_section_security">امنیت و حریم خصوصی</string>
+    <string name="settings_section_data">داده‌ها و پیامک‌های هوشمند</string>
+</resources>

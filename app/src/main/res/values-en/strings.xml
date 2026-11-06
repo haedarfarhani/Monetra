@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Monetra</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_transactions">Transactions</string>
+    <string name="nav_accounts">Accounts</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="monthly_income">Monthly Income</string>
+    <string name="monthly_expense">Monthly Expense</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="no_recent_transactions">No recent transactions found.</string>
+    <string name="add_transaction">Add Transaction</string>
+
+    <!-- Transactions -->
+    <string name="transactions_title">Transactions</string>
+    <string name="no_transactions">No transactions recorded yet.</string>
+
+    <!-- Accounts -->
+    <string name="accounts_title">Accounts</string>
+    <string name="no_accounts">No accounts added yet.</string>
+
+    <!-- Categories -->
+    <string name="categories_title">Categories</string>
+    <string name="category_edit_title">Edit category</string>
+    <string name="category_delete_title">Delete category</string>
+    <string name="category_delete_message">Its transactions are kept and simply become uncategorized.</string>
+    <string name="category_system_badge">System</string>
+    <string name="no_categories">No categories available.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="biometric_auth">Biometric Authentication</string>
+    <string name="settings_biometric_subtitle">Quick and secure sign-in with your fingerprint</string>
+    <string name="settings_biometric_unavailable">Biometrics are not available on this device</string>
+    <string name="settings_biometric_enabled">Biometric lock enabled</string>
+    <string name="settings_lock_message">Authenticate to continue</string>
+    <string name="settings_drafts_cleared">Pending drafts cleared</string>
+    <string name="currency">Currency</string>
+    <string name="language">Language</string>
+    <string name="language_system_default">System Default</string>
+    <string name="language_persian">فارسی</string>
+    <string name="language_english">English</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="theme_mode">Theme</string>
+    <string name="theme_system">System Default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <!-- Language Selection / Onboarding -->
+    <string name="select_language_title">Select Language / انتخاب زبان</string>
+    <string name="select_language_subtitle">Choose your preferred language to continue</string>
+    <string name="continue_button">Continue</string>
+    <string name="onboarding_step">Step %1$d of %2$d</string>
+    <string name="calendar_title">Calendar</string>
+    <string name="calendar_subtitle">Dates are shown in this calendar. Already stored data is not changed.</string>
+    <string name="calendar_jalali">Jalali (Persian)</string>
+    <string name="calendar_gregorian">Gregorian</string>
+    <string name="currency_title">Default currency</string>
+    <string name="currency_subtitle">Used for new accounts and transactions. Existing amounts are never converted.</string>
+    <string name="currency_usd">US Dollar</string>
+    <string name="currency_irr">Iranian Rial</string>
+    <string name="currency_toman">Iranian Toman</string>
+    <string name="action_next">Next</string>
+    <string name="action_back">Back</string>
+    <string name="action_finish">Finish</string>
+
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_clear">Clear</string>
+    <string name="confirm_delete_title">Delete transaction?</string>
+    <string name="confirm_delete_message">This action cannot be undone.</string>
+    <string name="transaction_type_income">Income</string>
+    <string name="transaction_type_expense">Expense</string>
+    <string name="transaction_type_transfer">Transfer</string>
+    <string name="transactions_search_hint">Search</string>
+    <string name="transactions_filters">Filters</string>
+    <string name="filter_all">All</string>
+    <string name="filter_account">Account</string>
+    <string name="filter_category">Category</string>
+    <string name="transactions_source_manual">Manual</string>
+    <string name="transactions_source_bank">Bank SMS</string>
+    <string name="transaction_delete_message">This transaction will be removed and its balance effect reversed.</string>
+    <string name="transactions_load_more">Loading more…</string>
+    <string name="transactions_no_results">No transactions match your filters.</string>
+    <string name="transaction_form_add_title">New transaction</string>
+    <string name="transaction_form_edit_title">Edit transaction</string>
+    <string name="field_amount">Amount</string>
+    <string name="field_account">Account</string>
+    <string name="field_from_account">From account</string>
+    <string name="field_to_account">To account</string>
+    <string name="field_category">Category</string>
+    <string name="field_date">Date</string>
+    <string name="field_time">Time</string>
+    <string name="field_description">Description</string>
+    <string name="field_notes">Notes</string>
+    <string name="field_reference">Reference number</string>
+    <string name="error_amount_required">Enter an amount greater than zero</string>
+    <string name="error_account_required">Choose an account</string>
+    <string name="error_accounts_must_differ">Source and destination must differ</string>
+    <string name="error_category_required">Choose a category</string>
+    <string name="error_no_accounts">Create an account before adding transactions</string>
+    <string name="action_new_category">New category</string>
+    <string name="action_all_categories">All categories</string>
+    <string name="dialog_new_category_title">New category</string>
+    <string name="field_category_name">Category name</string>
+    <string name="transaction_detail_title">Transaction</string>
+    <string name="detail_type">Type</string>
+    <string name="detail_amount">Amount</string>
+    <string name="detail_account">Account</string>
+    <string name="detail_to_account">Destination account</string>
+    <string name="detail_category">Category</string>
+    <string name="detail_date">Date and time</string>
+    <string name="detail_description">Description</string>
+    <string name="detail_notes">Notes</string>
+    <string name="detail_reference">Reference</string>
+    <string name="detail_source">Source</string>
+    <string name="detail_bank">Bank</string>
+    <string name="account_add_title">New account</string>
+    <string name="account_name">Account name</string>
+    <string name="account_initial_balance">Initial balance</string>
+    <string name="account_type_bank">Bank</string>
+    <string name="account_type_cash">Cash</string>
+    <string name="account_type_card">Card</string>
+    <string name="account_type_label">Account type</string>
+    <string name="account_edit_title">Edit account</string>
+    <string name="account_role_label">Account role</string>
+    <string name="account_role_none">Regular</string>
+    <string name="account_role_default">Default</string>
+    <string name="account_role_daily">Daily spending</string>
+    <string name="account_role_salary">Salary</string>
+    <string name="account_delete_title">Delete account</string>
+    <string name="account_delete_message">Deleting this account also deletes all of its transactions. This cannot be undone.</string>
+    <string name="account_current_balance">Current balance</string>
+    <string name="accounts_swipe_hint">Swipe a card left or right to edit or delete</string>
+    <string name="accounts_total_balance">Total balance</string>
+    <string name="account_field_bank_name">Bank name (optional)</string>
+    <string name="account_field_account_number">Account number (optional)</string>
+    <string name="account_field_card_number">Card number (optional)</string>
+    <string name="account_field_holder_name">Account holder (optional)</string>
+    <string name="account_initial_balance_optional">Initial balance (optional)</string>
+    <string name="account_details_header">Account details</string>
+
+    <!-- Quick transaction descriptions -->
+    <string name="transaction_quick_description">Quick description</string>
+    <string name="transaction_quick_show">Show quick descriptions</string>
+    <string name="transaction_quick_close">Hide quick descriptions</string>
+    <string-array name="transaction_quick_descriptions">
+        <item>Groceries</item>
+        <item>Salary</item>
+        <item>Fuel</item>
+        <item>Rent</item>
+        <item>Pharmacy</item>
+        <item>Gift</item>
+    </string-array>
+    <string name="sms_import_title">Import bank message</string>
+    <string name="sms_import_paste_label">Bank message</string>
+    <string name="sms_import_parse">Analyze</string>
+    <string name="sms_import_save">Save transaction</string>
+    <string name="sms_import_reject">Reject</string>
+    <string name="sms_import_privacy">Messages are parsed on this device and never uploaded.</string>
+    <string name="sms_import_not_financial">This message does not look like a bank transaction.</string>
+    <string name="sms_import_duplicate">This message was already imported.</string>
+    <string name="sms_import_uncertain">Review the detected values before saving.</string>
+    <string name="sms_import_saved">Transaction saved</string>
+    <string name="sms_import_bank">Bank</string>
+    <string name="sms_import_card">Card</string>
+    <string name="sms_import_balance">Balance</string>
+    <string name="sms_import_confidence">Confidence</string>
+    <string name="sms_import_pending">Pending reviews</string>
+    <string name="settings_bank_import">Bank messages</string>
+    <string name="settings_auto_save">Auto-save high-confidence imports</string>
+    <string name="settings_clear_drafts">Clear pending drafts</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_privacy_body">Bank messages are read and parsed locally on your device. Raw messages are deleted after you approve or reject them, and OTP or authentication codes are ignored.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version %1$s</string>
+
+    <!-- Common -->
+    <string name="retry">Retry</string>
+    <string name="error_generic">An error occurred. Please try again.</string>
+    <string name="loading">Loading…</string>
+
+    <!-- New Strings for Premium UI -->
+    <string name="nav_reports">Reports</string>
+    <string name="onboarding_welcome_title">Welcome to Monetra</string>
+    <string name="onboarding_welcome_tagline">Smart Finance. Better Life.</string>
+    <string name="onboarding_welcome_desc">A modern, intuitive personal finance app designed for your peace of mind.</string>
+    <string name="onboarding_theme_title">Preferred Theme</string>
+    <string name="onboarding_theme_subtitle">Choose how Monetra looks to you</string>
+    <string name="action_view_all">View All</string>
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="quick_add_income">Income</string>
+    <string name="quick_add_expense">Expense</string>
+    <string name="quick_transfer">Transfer</string>
+    <string name="analytics_title">Reports &amp; Analytics</string>
+    <string name="analytics_income_vs_expense">Income vs Expense</string>
+    <string name="analytics_monthly">Monthly Overview</string>
+    <string name="analytics_by_category">Spending by Category</string>
+    <string name="analytics_net_savings">Net Savings</string>
+    <string name="analytics_range_month">This Month</string>
+    <string name="analytics_range_3months">Last 3 Months</string>
+    <string name="analytics_range_year">This Year</string>
+    <string name="analytics_range_all">All Time</string>
+    <string name="analytics_tab_daily">Daily</string>
+    <string name="analytics_tab_monthly">Monthly</string>
+    <string name="analytics_tab_yearly">Yearly</string>
+    <string name="analytics_period_summary">Period Summary</string>
+    <string name="analytics_vs_previous">vs previous period</string>
+    <string name="analytics_trend_title">Income &amp; Expense Trend</string>
+    <string name="analytics_income">Income</string>
+    <string name="analytics_expense">Expense</string>
+    <string name="analytics_average_line">Average</string>
+    <string name="analytics_averages_title">Averages &amp; Stats</string>
+    <string name="analytics_avg_daily_expense">Avg. Daily Expense</string>
+    <string name="analytics_avg_monthly_income">Avg. Monthly Income</string>
+    <string name="analytics_avg_monthly_expense">Avg. Monthly Expense</string>
+    <string name="analytics_savings_rate">Savings Rate</string>
+    <string name="analytics_transactions_count">Transactions</string>
+    <string name="analytics_insights_title">Insights</string>
+    <string name="analytics_biggest_expense">Biggest Expense</string>
+    <string name="analytics_top_category">Top Spending Category</string>
+    <string name="analytics_highest_spend_day">Highest Spend Day</string>
+    <string name="analytics_projection">Projected Month Expense</string>
+    <string name="analytics_projection_hint">Based on your daily average</string>
+    <string name="analytics_no_data_title">Nothing to report yet</string>
+    <string name="analytics_no_data_message">Add your first transaction to unlock charts, averages and insights.</string>
+    <string name="analytics_empty_period">No transactions in this period</string>
+    <string name="financial_overview">Financial Overview</string>
+    <string name="dashboard_last_months">Last 4 months</string>
+    <string name="dashboard_open_report">Open report</string>
+    <string name="dashboard_add_first">Add your first transaction</string>
+    <string name="dashboard_my_accounts">My accounts</string>
+    <string name="dashboard_savings_rate">Savings rate</string>
+    <string name="dashboard_daily_average">Daily average</string>
+    <string name="dashboard_top_categories">Top spending</string>
+    <string name="dashboard_this_month">This month</string>
+    <string name="dashboard_month_progress">Day %1$d of %2$d</string>
+    <string name="date_picker_title">Select Date</string>
+    <string name="time_picker_title">Select Time</string>
+    <string name="date_today">Today</string>
+    <string name="time_now">Now</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="hour_label">Hour</string>
+    <string name="minute_label">Minute</string>
+
+    <!-- Bank Transaction Notification & Review -->
+    <string name="notif_bank_title">Bank Transaction</string>
+    <string name="notif_bank_title_with_bank">%1$s Bank</string>
+    <string name="notif_bank_confirm">Confirm</string>
+    <string name="notif_bank_reject">Reject</string>
+    <string name="notif_bank_review">Review</string>
+    <string name="review_screen_title">Review Transaction</string>
+    <string name="review_confirmed_title">Transaction Confirmed</string>
+    <string name="review_confirmed_desc">The transaction was saved and account balance has been updated.</string>
+    <string name="review_rejected_title">Transaction Rejected</string>
+    <string name="review_rejected_desc">The transaction was discarded.</string>
+    <string name="review_expired_title">Transaction Expired</string>
+    <string name="review_expired_desc">This transaction request has expired.</string>
+    <string name="settings_bank_notifications">Bank Notifications</string>
+    <string name="settings_bank_notif_enable">Enable Notifications</string>
+    <string name="settings_bank_notif_sound">Sound &amp; Vibration</string>
+    <string name="settings_bank_notif_show_amount">Show Transaction Amount</string>
+    <string name="settings_bank_notif_hide_lockscreen">Hide Details on Lock Screen</string>
+    <string name="settings_bank_notif_auto_suggest_category">Auto-suggest Category</string>
+    <string name="settings_bank_notif_auto_suggest_account">Auto-suggest Account</string>
+    <string name="settings_section_general">General &amp; Preferences</string>
+    <string name="settings_section_security">Security &amp; Privacy</string>
+    <string name="settings_section_data">Data &amp; Automation</string>
+</resources>
