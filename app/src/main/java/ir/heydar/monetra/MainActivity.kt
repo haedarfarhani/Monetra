@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -49,6 +51,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import ir.heydar.monetra.core.datastore.PreferencesManager
+import ir.heydar.monetra.core.permissions.PermissionManager
 import ir.heydar.monetra.core.designsystem.components.LoadingIndicator
 import ir.heydar.monetra.core.designsystem.theme.AppTheme
 import ir.heydar.monetra.core.designsystem.theme.ThemeMode
@@ -82,6 +85,9 @@ class MainActivity : FragmentActivity() {
     @Inject
     lateinit var biometricManager: BiometricManager
 
+    @Inject
+    lateinit var permissionManager: PermissionManager
+
     private val pendingTransactionIdFlow = kotlinx.coroutines.flow.MutableStateFlow<Long?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +102,10 @@ class MainActivity : FragmentActivity() {
             val sharedText by sharedTextStore.text.collectAsStateWithLifecycle()
             val pendingTxId by pendingTransactionIdFlow.collectAsStateWithLifecycle()
             val biometricEnabled by preferencesManager.isBiometricEnabled.collectAsStateWithLifecycle(initialValue = null)
+            val permissionStatus by permissionManager.status.collectAsStateWithLifecycle()
+            val permissionLauncher = rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.RequestMultiplePermissions()
+            ) { permissionManager.refresh() }
 
             val systemInDarkTheme = isSystemInDarkTheme()
             val darkTheme = when (ThemeMode.fromKey(themeMode)) {
@@ -128,12 +138,26 @@ class MainActivity : FragmentActivity() {
             DisposableEffect(lifecycleOwner) {
                 val observer = LifecycleEventObserver { _, event ->
                     if (event == Lifecycle.Event.ON_STOP) unlocked = false
+                    // Grants can change while we are away (system dialog, app settings).
+                    if (event == Lifecycle.Event.ON_RESUME) permissionManager.refresh()
                 }
                 lifecycleOwner.lifecycle.addObserver(observer)
                 onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
             }
 
             val showLock = biometricEnabled == true && !unlocked
+
+            // Ask once, as soon as onboarding is done: the dashboard then reports the real state
+            // instead of the app nagging on every launch.
+            LaunchedEffect(isFirstLaunch, showLock, permissionStatus.promptShown) {
+                if (isFirstLaunch == false && !showLock && !permissionStatus.promptShown) {
+                    val missing = permissionManager.missingPermissions()
+                    permissionManager.markPromptShown()
+                    if (missing.isNotEmpty()) {
+                        permissionLauncher.launch(missing)
+                    }
+                }
+            }
             val lockTitle = stringResource(id = ir.heydar.monetra.R.string.app_name)
             val lockSubtitle = stringResource(id = ir.heydar.monetra.R.string.settings_lock_message)
             val lockNegative = stringResource(id = ir.heydar.monetra.R.string.action_cancel)

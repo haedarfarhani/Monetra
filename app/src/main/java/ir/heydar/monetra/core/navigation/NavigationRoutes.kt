@@ -1,5 +1,6 @@
 package ir.heydar.monetra.core.navigation
 
+import ir.heydar.monetra.domain.model.TransactionType
 import kotlinx.serialization.Serializable
 
 sealed interface Screen {
@@ -21,9 +22,13 @@ sealed interface Screen {
     @Serializable
     data object Settings : Screen
 
-    /** Pass a positive id to edit an existing transaction, or leave the default for a new one. */
+    /** Pass a positive id to edit an existing transaction, or leave the default for a new one.
+     *  [transactionType] pre-selects the form tab for new transactions (ignored when editing). */
     @Serializable
-    data class AddTransaction(val transactionId: Long = -1L) : Screen
+    data class AddTransaction(
+        val transactionId: Long = -1L,
+        val transactionType: TransactionType = TransactionType.EXPENSE
+    ) : Screen
 
     @Serializable
     data class TransactionDetail(val transactionId: Long) : Screen

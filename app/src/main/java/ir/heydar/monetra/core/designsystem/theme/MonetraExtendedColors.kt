@@ -23,6 +23,10 @@ data class MonetraExtendedColors(
     val transfer: Color,
     val divider: Color,
     val surfaceContainer: Color,
+    /** Inactive bottom-nav item (icon & label) — tuned for contrast on the glass bar. */
+    val navItemInactive: Color,
+    /** Pill background behind the selected bottom-nav icon. */
+    val navItemPill: Color,
     val balanceGradientStart: Color,
     val balanceGradientMid: Color,
     val balanceGradientEnd: Color
@@ -43,6 +47,8 @@ val LightExtendedColors = MonetraExtendedColors(
     transfer = TransferColorLight,
     divider = DividerLight,
     surfaceContainer = SurfaceContainerLight,
+    navItemInactive = NavBarInactiveLight,
+    navItemPill = NavBarPillLight,
     balanceGradientStart = BalanceGradientStartLight,
     balanceGradientMid = BalanceGradientMidLight,
     balanceGradientEnd = BalanceGradientEndLight
@@ -63,6 +69,8 @@ val DarkExtendedColors = MonetraExtendedColors(
     transfer = TransferColorDark,
     divider = DividerDark,
     surfaceContainer = SurfaceContainerDark,
+    navItemInactive = NavBarInactiveDark,
+    navItemPill = NavBarPillDark,
     balanceGradientStart = BalanceGradientStartDark,
     balanceGradientMid = BalanceGradientMidDark,
     balanceGradientEnd = BalanceGradientEndDark

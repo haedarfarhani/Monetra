@@ -275,4 +275,11 @@
     <string name="settings_section_general">General &amp; Preferences</string>
     <string name="settings_section_security">Security &amp; Privacy</string>
     <string name="settings_section_data">Data &amp; Automation</string>
+
+    <!-- Runtime permission alert on the dashboard -->
+    <string name="permission_banner_title">Access is turned off</string>
+    <string name="permission_banner_sms_missing">SMS access is off — incoming bank messages will not be detected.</string>
+    <string name="permission_banner_notifications_missing">Notifications are off — you will not be alerted about new bank transactions.</string>
+    <string name="permission_open_settings">Open app settings</string>
+    <string name="permission_settings_hint">Allow the permissions in system settings to turn these features back on.</string>
 </resources>

@@ -9,7 +9,7 @@ class MelliBankParser @Inject constructor() : BankMessageParser {
     override val bankName: String = "Melli"
 
     override fun matches(normalizedMessage: String, sender: String?): Boolean =
-        sender == bankName || normalizedMessage.contains("بانک ملی")
+        sender == bankName || normalizedMessage.contains("بانک ملی") || normalizedMessage.contains("ملی ایران")
 
     override fun parse(
         normalizedMessage: String,
@@ -18,18 +18,23 @@ class MelliBankParser @Inject constructor() : BankMessageParser {
     ): BankTransactionDraft? {
         val amount = ParserSupport.amount(normalizedMessage) ?: return null
         val type = ParserSupport.transactionType(normalizedMessage)
+        val bankType = ParserSupport.bankTransactionType(normalizedMessage)
         val timestamp = ParserSupport.timestamp(normalizedMessage)
         val reference = ParserSupport.referenceNumber(normalizedMessage)
+        val account = ParserSupport.accountNumber(normalizedMessage)
+        val card = ParserSupport.cardLastFour(normalizedMessage)
+        val balance = ParserSupport.balance(normalizedMessage)
 
         return BankTransactionDraft(
             bankName = bankName,
             senderAddress = sender,
             transactionType = type,
+            bankTransactionType = bankType,
             amountMinorUnits = amount.minorUnits,
             currencyCode = amount.currency.code,
-            cardLastFourDigits = ParserSupport.cardLastFour(normalizedMessage),
-            accountBalanceMinorUnits = ParserSupport.balance(normalizedMessage)
-                ?.let { ParserSupport.toMinorUnits(it, amount.currency) },
+            accountNumber = account,
+            cardLastFourDigits = card,
+            accountBalanceMinorUnits = balance?.let { ParserSupport.toMinorUnits(it, amount.currency) },
             transactionDate = ParserSupport.dateText(normalizedMessage),
             transactionTime = ParserSupport.timeText(normalizedMessage),
             transactionTimestamp = timestamp,

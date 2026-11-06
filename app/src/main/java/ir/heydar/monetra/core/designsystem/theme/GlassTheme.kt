@@ -31,7 +31,7 @@ data class GlassColors(
     /** Fainter fill for elements nested inside an existing glass panel. */
     val innerFillTop: Color,
     val innerFillBottom: Color,
-    /** Denser frosted fill for the floating bottom bar. */
+    /** Denser frosted fill for the floating bottom bar (dark theme uses warm ink so light icons stay readable). */
     val barTint: Color
 )
 
@@ -46,7 +46,7 @@ val LightGlassColors = GlassColors(
     dialogFillBottom = Color.White.copy(alpha = 0.72f),
     innerFillTop = Color.White.copy(alpha = 0.40f),
     innerFillBottom = Color.White.copy(alpha = 0.16f),
-    barTint = Color.White.copy(alpha = 0.88f)
+    barTint = Color.White.copy(alpha = 0.94f)
 )
 
 val DarkGlassColors = GlassColors(
@@ -60,7 +60,7 @@ val DarkGlassColors = GlassColors(
     dialogFillBottom = Color(0xFF161D33).copy(alpha = 0.86f),
     innerFillTop = Color.White.copy(alpha = 0.10f),
     innerFillBottom = Color.White.copy(alpha = 0.045f),
-    barTint = Color.White.copy(alpha = 0.55f)
+    barTint = Color(0xFF1A1410).copy(alpha = 0.92f)
 )
 
 val LocalGlassColors = staticCompositionLocalOf { LightGlassColors }

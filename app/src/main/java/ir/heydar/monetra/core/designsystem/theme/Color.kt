@@ -44,6 +44,10 @@ val SurfaceContainerLight = Color(0xFFF4F1E8)
 val OutlineLight = Color(0xFFDFD9CC)
 val DividerLight = Color(0xFFE8E3D7)
 
+// Bottom Navigation Bar — dedicated tokens for guaranteed contrast on the glass bar
+val NavBarInactiveLight = Color(0xFF57503F)   // deep warm olive-gray (~7.5:1 on the bar)
+val NavBarPillLight = Color(0xFFD3EEDF)       // solid willow mint behind the selected icon
+
 // Dark Theme Brand Colors
 val PrimaryDark = Color(0xFF87C38F)           // Willow Green
 val PrimaryVariantDark = Color(0xFF5FA873)
@@ -76,6 +80,10 @@ val SurfaceContainerDark = Color(0xFF201A15)
 
 val OutlineDark = Color(0xFF3E362C)
 val DividerDark = Color(0xFF332C23)
+
+// Bottom Navigation Bar - Dark: the bar fill is warm ink, so items stay light & high-contrast
+val NavBarInactiveDark = Color(0xFFCBC2B3)    // warm light gray (~10:1 on the dark bar)
+val NavBarPillDark = Color(0xFF2E6B4C)        // deep willow behind the selected icon
 
 // Financial Semantic Colors - Light
 val SuccessLight = Color(0xFF226F54)          // Turf Green

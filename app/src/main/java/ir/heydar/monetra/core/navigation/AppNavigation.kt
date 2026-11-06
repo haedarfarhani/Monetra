@@ -62,7 +62,7 @@ import ir.heydar.monetra.core.designsystem.glass.LiquidGlassBackdrop
 import ir.heydar.monetra.core.designsystem.glass.glassStrokeBrush
 import ir.heydar.monetra.core.designsystem.theme.Dimens
 import ir.heydar.monetra.core.designsystem.theme.glassColors
-import ir.heydar.monetra.core.designsystem.theme.glassColors
+import ir.heydar.monetra.core.designsystem.theme.monetraColors
 import ir.heydar.monetra.feature.accounts.AccountsRoute
 import ir.heydar.monetra.feature.analytics.AnalyticsRoute
 import ir.heydar.monetra.feature.bankreview.BankTransactionReviewRoute
@@ -152,8 +152,8 @@ fun AppNavigation(
             }
             composable<Screen.Dashboard> {
                 DashboardRoute(
-                    onNavigateToAddTransaction = {
-                        navController.navigate(Screen.AddTransaction())
+                    onNavigateToAddTransaction = { type ->
+                        navController.navigate(Screen.AddTransaction(transactionType = type))
                     },
                     onNavigateToTransactionDetail = { id ->
                         navController.navigate(Screen.TransactionDetail(id))
@@ -243,7 +243,7 @@ private fun ModernFloatingNavigationBar(
 ) {
     val barShape = RoundedCornerShape(28.dp)
     val primaryColor = MaterialTheme.colorScheme.primary
-    val onSurfaceVariant = MaterialTheme.colorScheme.onSurfaceVariant
+    val extended = MaterialTheme.monetraColors
     val glass = MaterialTheme.glassColors
 
     // 4 destinations symmetrically divided around the center FAB
@@ -295,7 +295,8 @@ private fun ModernFloatingNavigationBar(
                             destination = dest,
                             isSelected = isSelected,
                             primaryColor = primaryColor,
-                            unselectedColor = onSurfaceVariant,
+                            unselectedColor = extended.navItemInactive,
+                            pillColor = extended.navItemPill,
                             onClick = { onNavigate(dest) }
                         )
                     }
@@ -319,7 +320,8 @@ private fun ModernFloatingNavigationBar(
                             destination = dest,
                             isSelected = isSelected,
                             primaryColor = primaryColor,
-                            unselectedColor = onSurfaceVariant,
+                            unselectedColor = extended.navItemInactive,
+                            pillColor = extended.navItemPill,
                             onClick = { onNavigate(dest) }
                         )
                     }
@@ -347,7 +349,9 @@ private fun ModernFloatingNavigationBar(
             Icon(
                 imageVector = Icons.Default.Add,
                 contentDescription = stringResource(id = R.string.add_transaction),
-                tint = Color.White,
+                // onPrimary flips with the theme: white on Turf Green (light),
+                // dark coffee on Willow Green (dark) — always readable.
+                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.size(28.dp)
             )
         }
@@ -360,6 +364,7 @@ private fun FloatingNavItem(
     isSelected: Boolean,
     primaryColor: Color,
     unselectedColor: Color,
+    pillColor: Color,
     onClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -381,10 +386,11 @@ private fun FloatingNavItem(
         label = "navIconColor"
     )
 
-    val pillAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.15f else 0f,
+    // Solid themed pill behind the selected icon — clearly visible in both themes.
+    val animatedPillColor by animateColorAsState(
+        targetValue = if (isSelected) pillColor else Color.Transparent,
         animationSpec = tween(durationMillis = 200),
-        label = "navPillAlpha"
+        label = "navPillColor"
     )
 
     Column(
@@ -407,7 +413,7 @@ private fun FloatingNavItem(
                     scaleY = scale
                 }
                 .clip(RoundedCornerShape(12.dp))
-                .background(primaryColor.copy(alpha = pillAlpha))
+                .background(animatedPillColor)
                 .padding(horizontal = 12.dp, vertical = 4.dp),
             contentAlignment = Alignment.Center
         ) {

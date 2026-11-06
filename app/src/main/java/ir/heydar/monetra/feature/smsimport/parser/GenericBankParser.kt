@@ -23,14 +23,19 @@ class GenericBankParser @Inject constructor() : BankMessageParser {
     ): BankTransactionDraft? {
         val amount = ParserSupport.amount(normalizedMessage) ?: return null
         val type = ParserSupport.transactionType(normalizedMessage) ?: return null
+        val bankType = ParserSupport.bankTransactionType(normalizedMessage)
 
         return BankTransactionDraft(
             bankName = null,
             senderAddress = sender,
             transactionType = type,
+            bankTransactionType = bankType,
             amountMinorUnits = amount.minorUnits,
             currencyCode = amount.currency.code,
+            accountNumber = ParserSupport.accountNumber(normalizedMessage),
             cardLastFourDigits = ParserSupport.cardLastFour(normalizedMessage),
+            accountBalanceMinorUnits = ParserSupport.balance(normalizedMessage)
+                ?.let { ParserSupport.toMinorUnits(it, amount.currency) },
             transactionDate = ParserSupport.dateText(normalizedMessage),
             transactionTime = ParserSupport.timeText(normalizedMessage),
             transactionTimestamp = ParserSupport.timestamp(normalizedMessage),

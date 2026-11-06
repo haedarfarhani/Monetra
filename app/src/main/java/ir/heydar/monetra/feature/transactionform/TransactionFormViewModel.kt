@@ -41,13 +41,21 @@ class TransactionFormViewModel @Inject constructor(
 
     private val editingId: Long = savedStateHandle.get<Long>(TRANSACTION_ID_ARG) ?: -1L
 
+    // Tab the form opens on for NEW transactions. Navigation stores enum args as strings in
+    // some versions, so accept both the enum and its name. Overridden when editing below.
+    private val initialType: TransactionType = resolveInitialType(savedStateHandle)
+
     // The merged form only edits `description`; original notes/reference of an existing
     // transaction are preserved untouched so editing never wipes stored data.
     private var preservedNotes: String? = null
     private var preservedReference: String? = null
 
     private val _uiState = MutableStateFlow(
-        TransactionFormUiState(isEditing = editingId > 0)
+        TransactionFormUiState(
+            isEditing = editingId > 0,
+            // New entries start on the requested tab; editing loads the stored type instead.
+            type = if (editingId > 0) TransactionType.EXPENSE else initialType
+        )
     )
     val uiState: StateFlow<TransactionFormUiState> = _uiState.asStateFlow()
 
@@ -325,7 +333,16 @@ class TransactionFormViewModel @Inject constructor(
 
     private companion object {
         const val TRANSACTION_ID_ARG = "transactionId"
+        const val TRANSACTION_TYPE_ARG = "transactionType"
         const val THOUSANDS_SEPARATOR = "\u066C"
+
+        /** Reads the pre-selected tab from the navigation args, tolerating enum-or-string storage. */
+        fun resolveInitialType(savedStateHandle: SavedStateHandle): TransactionType =
+            when (val raw = savedStateHandle.get<Any?>(TRANSACTION_TYPE_ARG)) {
+                is TransactionType -> raw
+                is String -> runCatching { TransactionType.valueOf(raw) }.getOrDefault(TransactionType.EXPENSE)
+                else -> TransactionType.EXPENSE
+            }
     }
 }
 

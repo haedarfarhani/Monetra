@@ -290,4 +290,22 @@
     <string name="settings_section_general">General &amp; Preferences</string>
     <string name="settings_section_security">Security &amp; Privacy</string>
     <string name="settings_section_data">Data &amp; Automation</string>
+    <string name="permission_gate_title">Bank SMS Import</string>
+    <string name="permission_gate_subtitle">Enable SMS permission so Monetra can automatically detect incoming bank messages.</string>
+    <string name="permission_sms_title">SMS Permission</string>
+    <string name="permission_sms_desc">Monetra needs access to your SMS messages to parse bank transaction notifications automatically.</string>
+    <string name="permission_notif_title">Notifications</string>
+    <string name="permission_notif_desc">Enable bank transaction notifications so you can review transactions from your phone.</string>
+    <string name="permission_grant">Grant Permission</string>
+    <string name="permission_enable">Enable Notifications</string>
+    <string name="permission_already">Already enabled — Monetra is working.</string>
+    <string name="permission_hide">Hide</string>
+    <string name="permission_show_on_lock">Show on Lock Screen</string>
+
+    <!-- Runtime permission alert on the dashboard -->
+    <string name="permission_banner_title">Access is turned off</string>
+    <string name="permission_banner_sms_missing">SMS access is off — incoming bank messages will not be detected.</string>
+    <string name="permission_banner_notifications_missing">Notifications are off — you will not be alerted about new bank transactions.</string>
+    <string name="permission_open_settings">Open app settings</string>
+    <string name="permission_settings_hint">Allow the permissions in system settings to turn these features back on.</string>
 </resources>

@@ -275,4 +275,12 @@
     <string name="settings_section_general">تنظیمات عمومی و شخصی‌سازی</string>
     <string name="settings_section_security">امنیت و حریم خصوصی</string>
     <string name="settings_section_data">داده‌ها و پیامک‌های هوشمند</string>
+
+    <!-- اعلان دسترسی‌های زمان اجرا در داشبورد -->
+    <string name="permission_banner_title">دسترسی‌ها غیرفعال است</string>
+    <string name="permission_banner_sms_missing">دسترسی پیامک غیرفعال است — پیامک‌های بانکی جدید به‌صورت خودکار شناسایی نمی‌شوند.</string>
+    <string name="permission_banner_notifications_missing">اعلان‌ها غیرفعال است — از تراکنش‌های جدید بانکی باخبر نمی‌شوید.</string>
+    <string name="permission_grant">اجازه دادن دسترسی</string>
+    <string name="permission_open_settings">باز کردن تنظیمات برنامه</string>
+    <string name="permission_settings_hint">برای فعال شدن این قابلیت‌ها، دسترسی‌ها را در تنظیمات سیستم اجازه دهید.</string>
 </resources>

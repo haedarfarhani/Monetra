@@ -3,6 +3,7 @@ package ir.heydar.monetra.feature.smsimport.parser
 import ir.heydar.monetra.core.calendar.JalaliCalendar
 import ir.heydar.monetra.core.currency.AppCurrency
 import ir.heydar.monetra.domain.model.BankTransactionDraft
+import ir.heydar.monetra.domain.model.BankTransactionType
 import ir.heydar.monetra.domain.model.TransactionType
 import java.time.LocalDate
 import java.time.ZoneId
@@ -28,15 +29,18 @@ data class AmountMatch(
 /** Regex helpers shared by the bank parsers. All input is expected to be normalized. */
 object ParserSupport {
 
-    private val amountWithUnit = Regex("""([0-9][0-9,]*)\s*(ریال|ريال|تومان|دلار)""")
-    private val bareAmount = Regex("""([0-9][0-9,]{2,})""")
-    private val datePattern = Regex("""(13\d{2}|14\d{2}|20\d{2})[/-](\d{1,2})[/-](\d{1,2})""")
+    private val amountWithUnit = Regex("""(?:مبلغ|واریز|برداشت|خرید|پرداخت|انتقال|کسر|بستانکار|بدهکار)[:\s]*([0-9][0-9,]*)\s*(ریال|ريال|تومان|دلار)?""")
+    private val explicitUnitPattern = Regex("""([0-9][0-9,]*)\s*(ریال|ريال|تومان|دلار)""")
+    private val bareAmountPattern = Regex("""مبلغ[:\s]*([0-9][0-9,]*)""")
+
+    private val datePattern = Regex("""(13\d{2}|14\d{2}|20\d{2}|\d{2})[/-](\d{1,2})[/-](\d{1,2})""")
     private val timePattern = Regex("""(\d{1,2}):(\d{2})""")
-    private val referencePattern = Regex("""(?:پیگیری|مرجع|رسید|سند)[:\s]*([0-9A-Za-z]{4,})""")
-    private val balancePattern = Regex("""(?:موجودی|باقیمانده|مانده)[:\s]*(?:مبلغ)?\s*([0-9][0-9,]*)""")
+    private val referencePattern = Regex("""(?:پیگیری|مرجع|رسید|سند|رهگیری|کد\s*رهگیری)[:\s]*([0-9A-Za-z]{4,})""")
+    private val balancePattern = Regex("""(?:موجودی|باقیمانده|مانده|موجودیکارت)[:\s]*(?:مبلغ)?\s*([0-9][0-9,]*)""")
     private val maskedCardPattern = Regex("""\*{4}[\s-]*([0-9]{4})""")
     private val dashedCardPattern = Regex("""[0-9]{4}[\s-]+\*{4}[\s-]+\*{4}[\s-]+([0-9]{4})""")
-    private val namedCardPattern = Regex("""(?:کارت|حساب)[^0-9]{0,12}([0-9]{4})(?![0-9])""")
+    private val namedCardPattern = Regex("""(?:کارت|کارت\s*شماره)[^0-9]{0,12}([0-9]{4})(?![0-9])""")
+    private val accountNumberPattern = Regex("""(?:حساب|سپرده)[:\s]*([0-9.\-/]{5,24})""")
 
     fun amount(normalizedMessage: String, anchor: String? = "مبلغ"): AmountMatch? {
         val anchored = anchor?.let { marker ->
@@ -44,21 +48,47 @@ object ParserSupport {
             if (index >= 0) normalizedMessage.substring(index) else null
         }
 
-        val candidates = sequenceOf(anchored, normalizedMessage)
-            .filterNotNull()
-            .mapNotNull { text -> amountWithUnit.find(text)?.let { it to text } }
-            .firstOrNull()
-
-        if (candidates != null) {
-            val (match, _) = candidates
-            val currency = currencyOf(match.groupValues[2])
-            val value = toLong(match.groupValues[1]) ?: return null
-            return AmountMatch(toMinorUnits(value, currency), currency, match.value)
+        val matchWithKeyword = amountWithUnit.find(anchored ?: normalizedMessage)
+        if (matchWithKeyword != null) {
+            val numStr = matchWithKeyword.groupValues[1]
+            val unitStr = matchWithKeyword.groupValues[2].ifEmpty { null }
+            val value = toLong(numStr)
+            if (value != null && value > 0L) {
+                val currency = unitStr?.let { currencyOf(it) }
+                    ?: detectCurrencyFromMessage(normalizedMessage)
+                    ?: AppCurrency.IRR
+                return AmountMatch(toMinorUnits(value, currency), currency, matchWithKeyword.value)
+            }
         }
 
-        val bare = bareAmount.find(normalizedMessage) ?: return null
-        val value = toLong(bare.groupValues[1]) ?: return null
-        return AmountMatch(value, AppCurrency.IRR, bare.value)
+        val explicitMatch = explicitUnitPattern.find(normalizedMessage)
+        if (explicitMatch != null) {
+            val value = toLong(explicitMatch.groupValues[1])
+            if (value != null && value > 0L) {
+                val currency = currencyOf(explicitMatch.groupValues[2])
+                return AmountMatch(toMinorUnits(value, currency), currency, explicitMatch.value)
+            }
+        }
+
+        val bareMatch = bareAmountPattern.find(normalizedMessage)
+        if (bareMatch != null) {
+            val value = toLong(bareMatch.groupValues[1])
+            if (value != null && value > 0L) {
+                val currency = detectCurrencyFromMessage(normalizedMessage) ?: AppCurrency.IRR
+                return AmountMatch(toMinorUnits(value, currency), currency, bareMatch.value)
+            }
+        }
+
+        return null
+    }
+
+    private fun detectCurrencyFromMessage(normalizedMessage: String): AppCurrency? {
+        return when {
+            normalizedMessage.contains("تومان") -> AppCurrency.TOMAN
+            normalizedMessage.contains("دلار") -> AppCurrency.USD
+            normalizedMessage.contains("ریال") || normalizedMessage.contains("ريال") -> AppCurrency.IRR
+            else -> null
+        }
     }
 
     fun currencyOf(word: String): AppCurrency = when (word) {
@@ -71,12 +101,24 @@ object ParserSupport {
         if (currency.fractionDigits == 0) majorUnits else majorUnits * 100
 
     fun transactionType(normalizedMessage: String): TransactionType? = when {
-        containsAny(normalizedMessage, "انتقال", "حواله", "انتقالی") -> TransactionType.TRANSFER
-        containsAny(normalizedMessage, "برداشت", "خرید", "پرداخت", "کسر", "بدهکار", "شماره کارت شما") ->
+        containsAny(normalizedMessage, "انتقال", "حواله", "انتقالی", "پایا", "ساتنا", "کارت به کارت") -> TransactionType.TRANSFER
+        containsAny(normalizedMessage, "برداشت", "خرید", "پرداخت", "کسر", "بدهکار", "کارمزد", "شماره کارت شما") ->
             TransactionType.EXPENSE
-        containsAny(normalizedMessage, "واریز", "افزایش", "بستانکار", "واریزی") ->
+        containsAny(normalizedMessage, "واریز", "افزایش", "بستانکار", "واریزی", "برگشت", "اصلاحیه واریز") ->
             TransactionType.INCOME
         else -> null
+    }
+
+    fun bankTransactionType(normalizedMessage: String): BankTransactionType = when {
+        containsAny(normalizedMessage, "اصلاحیه واریز", "برگشت") -> BankTransactionType.REVERSAL
+        containsAny(normalizedMessage, "کارمزد") -> BankTransactionType.FEE
+        containsAny(normalizedMessage, "کارت به کارت") -> BankTransactionType.CARD_TO_CARD
+        containsAny(normalizedMessage, "انتقال", "حواله", "پایا", "ساتنا") ->
+            if (containsAny(normalizedMessage, "به کارت", "به حساب", "واریز")) BankTransactionType.TRANSFER_IN
+            else BankTransactionType.TRANSFER_OUT
+        containsAny(normalizedMessage, "واریز", "افزایش", "بستانکار", "واریزی") -> BankTransactionType.INCOME
+        containsAny(normalizedMessage, "برداشت", "خرید", "پرداخت", "کسر", "بدهکار") -> BankTransactionType.EXPENSE
+        else -> BankTransactionType.UNKNOWN
     }
 
     fun timestamp(
@@ -84,9 +126,11 @@ object ParserSupport {
         zone: ZoneId = ZoneId.systemDefault()
     ): Long? {
         val dateMatch = datePattern.find(normalizedMessage) ?: return null
-        val year = dateMatch.groupValues[1].toIntOrNull() ?: return null
+        val rawYear = dateMatch.groupValues[1].toIntOrNull() ?: return null
         val month = dateMatch.groupValues[2].toIntOrNull() ?: return null
         val day = dateMatch.groupValues[3].toIntOrNull() ?: return null
+
+        val year = if (rawYear < 100) 1400 + rawYear else rawYear
 
         val (gregorianYear, gregorianMonth, gregorianDay) = if (year in 1300..1499) {
             val converted = JalaliCalendar.toGregorian(year, month, day)
@@ -116,6 +160,9 @@ object ParserSupport {
         maskedCardPattern.find(normalizedMessage)?.groupValues?.get(1)
             ?: dashedCardPattern.find(normalizedMessage)?.groupValues?.get(1)
             ?: namedCardPattern.find(normalizedMessage)?.groupValues?.get(1)
+
+    fun accountNumber(normalizedMessage: String): String? =
+        accountNumberPattern.find(normalizedMessage)?.groupValues?.get(1)
 
     fun referenceNumber(normalizedMessage: String): String? =
         referencePattern.find(normalizedMessage)?.groupValues?.get(1)
@@ -153,6 +200,6 @@ object ParserSupport {
     private fun containsAny(text: String, vararg needles: String): Boolean =
         needles.any { text.contains(it) }
 
-    private fun toLong(value: String): Long? =
+    fun toLong(value: String): Long? =
         value.replace(",", "").replace("،", "").toLongOrNull()
 }

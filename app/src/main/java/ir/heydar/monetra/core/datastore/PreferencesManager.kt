@@ -28,6 +28,7 @@ class PreferencesManager @Inject constructor(
         val BANK_NOTIFICATIONS_HIDE_LOCKSCREEN = booleanPreferencesKey("bank_notifications_hide_lockscreen")
         val BANK_NOTIFICATIONS_AUTO_SUGGEST_CATEGORY = booleanPreferencesKey("bank_notifications_auto_suggest_category")
         val BANK_NOTIFICATIONS_AUTO_SUGGEST_ACCOUNT = booleanPreferencesKey("bank_notifications_auto_suggest_account")
+        val PERMISSION_PROMPT_SHOWN = booleanPreferencesKey("permission_prompt_shown")
     }
 
     val isFirstLaunch: Flow<Boolean> = dataStore.data.map { preferences ->
@@ -161,6 +162,17 @@ class PreferencesManager @Inject constructor(
     suspend fun setBankNotificationsAutoSuggestAccount(suggest: Boolean) {
         dataStore.edit { preferences ->
             preferences[PreferencesKeys.BANK_NOTIFICATIONS_AUTO_SUGGEST_ACCOUNT] = suggest
+        }
+    }
+
+    /** True once the runtime permission dialogs were raised, so they are asked only once at launch. */
+    val permissionPromptShown: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[PreferencesKeys.PERMISSION_PROMPT_SHOWN] ?: false
+    }
+
+    suspend fun setPermissionPromptShown() {
+        dataStore.edit { preferences ->
+            preferences[PreferencesKeys.PERMISSION_PROMPT_SHOWN] = true
         }
     }
 }

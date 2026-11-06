@@ -7,6 +7,8 @@ import ir.heydar.monetra.core.calendar.AppDateFormatter
 import ir.heydar.monetra.core.calendar.CalendarSystem
 import ir.heydar.monetra.core.common.DispatcherProvider
 import ir.heydar.monetra.core.datastore.PreferencesManager
+import ir.heydar.monetra.core.permissions.PermissionManager
+import ir.heydar.monetra.core.permissions.PermissionStatus
 import ir.heydar.monetra.domain.model.Transaction
 import ir.heydar.monetra.domain.model.TransactionType
 import ir.heydar.monetra.domain.repository.AccountRepository
@@ -53,7 +55,8 @@ class DashboardViewModel @Inject constructor(
     private val transactionRepository: TransactionRepository,
     private val categoryRepository: CategoryRepository,
     private val preferencesManager: PreferencesManager,
-    private val dispatcherProvider: DispatcherProvider
+    private val dispatcherProvider: DispatcherProvider,
+    private val permissionManager: PermissionManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(DashboardUiState())
@@ -62,19 +65,30 @@ class DashboardViewModel @Inject constructor(
     private val _uiEffect = Channel<DashboardUiEffect>(Channel.BUFFERED)
     val uiEffect = _uiEffect.receiveAsFlow()
 
+    /** Runtime SMS/notification grants shown in the dashboard banner. */
+    val permissionStatus: StateFlow<PermissionStatus> = permissionManager.status
+
     init {
+        permissionManager.refresh()
         loadDashboardData()
     }
+
+    fun missingPermissions(): Array<String> = permissionManager.missingPermissions()
+
+    fun openAppSettings() = permissionManager.openAppSettings()
 
     fun onEvent(event: DashboardUiEvent) {
         when (event) {
             is DashboardUiEvent.Refresh -> loadDashboardData()
             is DashboardUiEvent.AddTransactionClicked -> {
-                viewModelScope.launch { _uiEffect.send(DashboardUiEffect.NavigateToAddTransaction) }
+                viewModelScope.launch {
+                    _uiEffect.send(DashboardUiEffect.NavigateToAddTransaction(event.type))
+                }
             }
             is DashboardUiEvent.TogglePrivacy -> {
                 _uiState.update { it.copy(isPrivacyEnabled = !it.isPrivacyEnabled) }
             }
+            is DashboardUiEvent.PermissionsChanged -> permissionManager.refresh()
             is DashboardUiEvent.TransactionClicked -> {
                 viewModelScope.launch {
                     _uiEffect.send(DashboardUiEffect.NavigateToTransactionDetail(event.transactionId))
