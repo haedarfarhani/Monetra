@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Zero insets: used where the status/navigation bar space is applied by the host screen. -->
+    <dimen name="size_0dp">0dp</dimen>
+</resources>
