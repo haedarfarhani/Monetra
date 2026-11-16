@@ -8,6 +8,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("C:\\Users\\Heydar Farhani\\AndroidStudioProjects\\Monetra\\Monetra")
+            storePassword = "1741210895"
+            keyAlias = "heydar"
+            keyPassword = "1741210895"
+        }
+    }
     namespace = "ir.heydar.monetra"
     compileSdk = 37
 
@@ -15,8 +23,8 @@ android {
         applicationId = "ir.heydar.monetra"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -27,7 +35,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
